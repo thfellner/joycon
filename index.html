@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joy-Face</title>
+    <script src="socket.io/socket.io.js"></script>
+    <script src="svg-inject.js"></script>
+
+    <!-- hide images until injection has completed or failed -->
+    <style>
+        /* hide all img elements until the svg is injected to prevent "unstyled image flash" */
+        img.injectable {
+            visibility: hidden;
+        }
+    </style>
+
+    <script>
+        SVGInject.setOptions({
+            onFail: (img, svg) => {
+                // if injection fails show the img element
+                img.classList.remove('injectable');
+            },
+            onAllFinish: () => {
+                let tag = document.createElement("script");
+                tag.src = "js/fetchData.js";
+                document.getElementsByTagName("head")[0].appendChild(tag);
+
+                let tag2 = document.createElement("script");
+                tag2.src = "js/editJoyConIllustration.js";
+                document.getElementsByTagName("head")[0].appendChild(tag2);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // inject images with an .svg file ending
+            SVGInject(document.querySelectorAll('img.injectable'));
+        });
+    </script>
+</head>
+<body>
+    <img src="svg/Nintendo_Switch_Joy-Con_illustration.svg" class="injectable" />
+</body>
+</html>
