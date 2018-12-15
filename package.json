@@ -9,8 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@iconfu/svg-inject": "^1.2.1",
+    "express": "^4.16.4",
     "node-bluetooth": "^1.2.0",
     "node-hid": "^0.5.7",
+    "socket.io": "^2.2.0",
     "vgen-xbox": "^1.0.1"
   }
 }

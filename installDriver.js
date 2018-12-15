@@ -1,2 +1,3 @@
-let vgen = require('vgen-xbox')
-vgen.installDriver()
+let VGen = require('vgen-xbox')
+let vgen = new VGen();
+vgen.installDriver();
