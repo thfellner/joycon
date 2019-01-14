@@ -1,8 +1,8 @@
 const buttonsInSVG  = {
-    x: [document.getElementById("path3095"), document.getElementById("path3948")],
-    y: [document.getElementById("path3867"), document.getElementById("path3950")],
-    b: [document.getElementById("path3865"), document.getElementById("path3952")],
-    a: document.getElementById("path3869"),
+    x: [document.getElementById("path3867"), document.getElementById("path3948")],
+    y: [document.getElementById("path3865"), document.getElementById("path3950")],
+    b: [document.getElementById("path3869"), document.getElementById("path3952")],
+    a: document.getElementById("path3095"),
     plus: [document.getElementById("path3093"), document.getElementById("path3942")],
     R: [document.getElementById("path4168"), document.getElementById("path3818"), document.getElementById("path3926")],
     ZR: [document.getElementById("path4166"), document.getElementById("path3930")],
