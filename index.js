@@ -37,8 +37,10 @@ app.use(express.static(__dirname + '/node_modules/@iconfu/svg-inject/src'));
 let watchLoop = setInterval(()=>{
     let dev = hid.devices().filter((a)=>a.vendorId === 1406 && cm.joycons.find((b)=>b.serialNumber === a.serialNumber) == null);
     let newJoycons = dev.map((a)=>{return new Joycon(a.path,a.serialNumber)});
-    newJoycons.forEach((joy)=>cm.addNewJoycon(joy));
-    joycons.push(newJoycons);
+    newJoycons.forEach((joy)=> {
+        cm.addNewJoycon(joy);
+        joycons.push(joy);
+    });
 },1000);
 /*let joycons = []
 let _controllerPool = []
