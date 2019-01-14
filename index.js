@@ -12,13 +12,15 @@ let server = http.createServer(app);
 
 let io = require('socket.io').listen(server);
 
+let joycons = [];
+
+
 server.listen(8080, () => {
     console.log('Joy-Face App listening on port 8080!');
 });
 
 module.exports.socketIOConnections = [];
 io.on('connection', ioSocket => {
-    console.log("connection");
     module.exports.socketIOConnections.push(ioSocket);
     ioSocket.on('disconnect', () => {
         module.exports.socketIOConnections.splice(module.exports.socketIOConnections.indexOf(ioSocket), 1);
@@ -36,8 +38,8 @@ let watchLoop = setInterval(()=>{
     let dev = hid.devices().filter((a)=>a.vendorId === 1406 && cm.joycons.find((b)=>b.serialNumber === a.serialNumber) == null);
     let newJoycons = dev.map((a)=>{return new Joycon(a.path,a.serialNumber)});
     newJoycons.forEach((joy)=>cm.addNewJoycon(joy));
+    joycons.push(newJoycons);
 },1000);
-let socket;
 /*let joycons = []
 let _controllerPool = []
 let controllerPool = new Proxy(_controllerPool,{
@@ -73,7 +75,6 @@ process.on('SIGINT',()=>{
         joycons.forEach((joy) => {
             //controllerPool.push(joy.releaseController())
             joy.finalize();
-            socket.close();
         });
         /*controllerPool.forEach((con)=>{
             con.finalize();
